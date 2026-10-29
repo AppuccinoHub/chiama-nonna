@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#c64732" />
+  <meta name="color-scheme" content="light" />
+  <meta name="description" content="Italian video calls from Monte di Procida. Weather, food, then verbs — one link for class." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Chiama Nonna" />
+  <title>Chiama Nonna</title>
+  <link rel="icon" href="img/nonna-icon-v2.png" type="image/png" />
+  <link rel="apple-touch-icon" href="img/nonna-icon-v2.png" />
+  <link rel="canonical" href="https://appuccinohub.github.io/chiama-nonna/" />
+
+  <meta property="og:title" content="Chiama Nonna" />
+  <meta property="og:description" content="Italian video calls from Monte di Procida. Weather, food, then verbs — one link for class." />
+  <meta property="og:image" content="https://appuccinohub.github.io/chiama-nonna/img/og.png" />
+  <meta property="og:image:secure_url" content="https://appuccinohub.github.io/chiama-nonna/img/og.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1280" />
+  <meta property="og:image:height" content="720" />
+  <meta property="og:image:alt" content="Chiama Nonna. Italian video calls from Monte di Procida." />
+  <meta property="og:url" content="https://appuccinohub.github.io/chiama-nonna/" />
+  <meta property="og:type" content="website" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chiama Nonna" />
+  <meta name="twitter:description" content="Italian video calls from Monte di Procida. Weather, food, then verbs — one link for class." />
+  <meta name="twitter:image" content="https://appuccinohub.github.io/chiama-nonna/img/og.png" />
+  <meta name="twitter:image:alt" content="Chiama Nonna. Italian video calls from Monte di Procida." />
+
+  <link rel="stylesheet" href="css/hub.css" />
+</head>
+<body>
+  <div class="stage">
+    <main class="hub" id="app">
+      <section class="portrait" aria-label="Nonna">
+        <img src="img/nonna-cartoon-v2.jpg" alt="Nonna from Monte di Procida" />
+        <p class="live-pill"><span class="dot" aria-hidden="true"></span> Nonna is free</p>
+      </section>
+
+      <div class="sheet">
+        <header class="mast">
+          <p class="kicker">One link for class</p>
+          <h1>Chiama <em>Nonna</em></h1>
+          <p class="lede">Italian video calls from Monte di Procida.</p>
+          <svg class="squiggle" viewBox="0 0 140 14" aria-hidden="true">
+            <path d="M2 9 Q 18 2 32 9 T 62 9 T 92 8 T 138 6" fill="none" stroke="#e2ae3a" stroke-width="3.5" stroke-linecap="round" />
+          </svg>
+        </header>
+
+        <div class="point-box">
+          <p class="point-kicker">Point of these calls</p>
+          <ul>
+            <li>Work in order: weather, then food, then verbs.</li>
+            <li>Tap <strong>Start next call</strong>. Come back and this page marks it done.</li>
+            <li>Tap <strong>Copy all</strong> for Google Classroom.</li>
+          </ul>
+        </div>
+
+        <p id="move-banner" class="move-banner" role="status" hidden></p>
+
+        <form id="start-form" class="start-row">
+          <div class="name-wrap">
+            <label for="name-input">Your name</label>
+            <input id="name-input" name="given-name" autocomplete="given-name" enterkeyhint="go" maxlength="24" placeholder="For the class copy" />
+          </div>
+          <button type="submit" id="start-next" class="primary">Start next call</button>
+        </form>
+        <p id="greet-line" class="greet" hidden></p>
+        <p id="progress-line" class="progress-line"></p>
+
+        <ol id="call-list" class="calls"></ol>
+
+        <section class="class-copy" id="class-copy" aria-labelledby="class-kicker">
+          <p class="point-kicker" id="class-kicker">For class</p>
+          <p class="class-note">Tap <strong>Copy all</strong>. Paste it into your Google Classroom assignment.</p>
+          <button type="button" id="copy-all-btn" class="primary copy-btn">Copy all</button>
+          <textarea id="copy-all-text" class="copy-box" readonly rows="6" aria-label="Text to paste into Google Classroom"></textarea>
+          <p class="copy-fallback" id="copy-fallback">If Copy doesn’t stick, select the box and press Ctrl or Cmd+C. On iPhone, tap and hold, then Copy.</p>
+        </section>
+
+        <p class="solo" id="solo-line">
+          <span class="solo-label">Use separately</span>
+        </p>
+
+        <p class="fine">
+          <button type="button" id="clear-btn" class="text-btn">Clear checks on this phone</button>
+          Checks and your name stay on this phone. Each call still has its own link.
+        </p>
+      </div>
+    </main>
+  </div>
+
+  <p id="toast" class="toast" hidden>Copied! Now paste it into Google Classroom.</p>
+  <div id="live" class="sr-only" aria-live="polite"></div>
+
+  <noscript>
+    <div class="noscript">
+      <p>This page keeps your checks with JavaScript. The calls still open from here:</p>
+      <ol>
+        <li><a href="https://appuccinohub.github.io/che-tempo-fa-nonna/?from=hub&amp;next=cibo">Che tempo fa, Nonna?</a></li>
+        <li><a href="https://appuccinohub.github.io/cosa-mangiamo-nonna/?from=hub&amp;next=fai">Cosa mangiamo, Nonna?</a></li>
+        <li><a href="https://appuccinohub.github.io/che-fai-oggi-nonna/?from=hub&amp;next=hub">Che fai oggi, Nonna?</a></li>
+      </ol>
+    </div>
+  </noscript>
+
+  <script src="js/hub.js"></script>
+</body>
+</html>
